@@ -11,20 +11,38 @@
             </li>
           </ul>
         </nav>
+
+        <div class="ml-auto flex h-full items-center">
+          <profile-image v-if="isLoggedIn" />
+          <action-button v-else @click="loginUser" />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from '@/components/ActionButton.vue';
+import ProfileImage from '@/components/ProfileImage.vue';
+
 export default {
   name: 'MainNav',
+  components: {
+    ActionButton,
+    ProfileImage
+  },
   data() {
     return {
       company: 'T-Gun Careers',
       url: 'https://careers.google.com',
-      menuItems: ['Teams', 'Locations', 'Life at T-Gun Careers', 'How we hire', 'Students', 'Jobs']
+      menuItems: ['Teams', 'Locations', 'Life at T-Gun Careers', 'How we hire', 'Students', 'Jobs'],
+      isLoggedIn: false
     };
+  },
+  methods: {
+    loginUser() {
+      this.isLoggedIn = true;
+    }
   }
 };
 </script>
